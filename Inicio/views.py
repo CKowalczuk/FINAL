@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-
+from django.shortcuts import render
 
 def Inicio(request):
-    return HttpResponse("Bienvenido - Trabajo Final Info2021")
+    return render(request, 'Inicio.html', {})
