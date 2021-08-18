@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>BIENVENIDO</title>
-</head>
-<body>
-<p>Hola, Estamos en el Nivel 1</p>
-    <p>¡Seguimos!</p>
+{% extends "base.html" %}}
 
-<input type="button" value="Volver" onClick="history.go(-1);">
+	{%block contenido %}
+		<head>
+			<title>BIENVENIDO</title>
+		</head>
+		<body>
+		<p>Hola, Estamos en el Nivel 1</p>
+		    <p>¡Seguimos!</p>
 
-</body>
-</html>
+		<input type="button" value="Volver" onClick="history.go(-1);">
+
+		</body>
+
+
+	{%endblock contenido %}
