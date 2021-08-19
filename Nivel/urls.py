@@ -2,6 +2,8 @@ from django.urls import path
 
 from . import views
 
+app_name = 'Nivel'
+
 urlpatterns = [
-    path('', views.Nivel_1, name='Nivel_1'),
+    path('', views.nivel),
 ]

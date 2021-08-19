@@ -2,11 +2,14 @@
 
 	{%block contenido %}
 		<head>
-			<title>BIENVENIDO</title>
+			<title>Nivel 1</title>
 		</head>
 		<body>
 		<p>Hola, Estamos en el Nivel 1</p>
-		    <p>¡Seguimos!</p>
+			 {% for a in preguntas %}
+			 	a.pregunta
+			 	
+			 {% endfor %}
 
 		<input type="button" value="Volver" onClick="history.go(-1);">
 
