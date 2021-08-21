@@ -1,0 +1,23 @@
+{% extends "base.html" %}}
+
+	{%block contenido %}
+		<head>
+			<title>Nivel 1</title>
+		</head>
+		<body>
+		<p>Hola, Estamos en el Nivel 1</p>
+			 {% for a in preguntas %}
+			 	<h5>{{a.pregunta}}</h5>
+			 	 	<p>	<li>{{a.rta1_v}}&nbsp;{{a.rta1}}</li>
+			 			<li>{{a.rta2_v}}&nbsp;{{a.rta2}}</li>
+			 			<li>{{a.rta3_v}}&nbsp;{{a.rta3}}</li>
+			 		</p>
+			 	
+			 {% endfor %}
+
+		<input type="button" value="Volver" onClick="history.go(-1);">
+
+		</body>
+
+
+	{%endblock contenido %}

@@ -1,6 +1,7 @@
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,9 +31,10 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    'Inicio',
-    'Nivel',
-    'Resultados',
+    'apps.Inicio',
+    'apps.Nivel',
+    'apps.Resultados',
+    'apps.usuarios'
 ]
 
 THIRD_APPS = []
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'Info2021.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,6 +85,7 @@ WSGI_APPLICATION = 'Info2021.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = 'usuarios.Usuario'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
