@@ -1,8 +1,8 @@
-
 from django.contrib 			import admin
 from django.urls 				import path, include
-from . 							import views
+from . 							import views 
 from django.contrib.auth	 	import views as auth_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,6 +10,8 @@ urlpatterns = [
     path('nivel/',include('apps.Nivel.urls')),
     path('Resultados/', include('apps.Resultados.urls')),
     path('', views.inicio, name='principal'),
+    # path('', SignupView.as_view(form_class=SignupFormWithCaptcha), name="registrarse"),
+    path('registrarse/', views.registrarse, name="registrarse"),
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name = "login"),
     path('logout/', auth_views.logout_then_login, name = "logout"),
 ]

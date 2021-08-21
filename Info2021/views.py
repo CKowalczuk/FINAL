@@ -16,3 +16,12 @@ def inicio(request):
 	return render(request,template_name, ctx)
 
 
+def registrarse(request):
+	template_name= "registrarse.html"
+
+	ctx = {
+
+	}
+	return render(request,template_name, ctx)
+
+
