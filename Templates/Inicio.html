@@ -1,9 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Inicio</title>
-</head>
-<body>
+{% extends "base.html" %}}
 
-</body>
-</html>
+	{%block contenido %}
+		<head>
+			<title>Inicio</title>
+		</head>
+		<body>
+		<p>Hola, Estamos en el Inicio</p>
+			 
+
+		<input type="button" value="Volver" onClick="history.go(-1);">
+
+		</body>
+
+
+	{%endblock contenido %}
