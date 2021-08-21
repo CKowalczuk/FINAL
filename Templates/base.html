@@ -29,7 +29,13 @@
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">OPCIONES</h4>
               <ul class="list-unstyled">
-              <li><a href="{% url 'Inicio' %}" class="text-white">Iniciar Sesión</a></li>
+             
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}" class="text-white">Cerrar Sesión</a></li>
+              {% else %}
+                <li><a href="{% url 'login' %}" class="text-white">Iniciar Sesión</a></li>
+              {% endif %}
+              
               <li><a href="{% url 'Nivel' %}" class="text-white">Comenzar Trivia</a></li>
               <li><a href="{% url 'Resultados' %}" class="text-white">Resultados</a></li>
               </ul>
@@ -56,9 +62,12 @@
         <div class="container">
           <h1 class="display-5">Provincialización del Chaco</h1>
           <p class="lead text-muted">Probemos lo que sabemos sobre nuestra Provincia</p>
+          {% if not user.is_authenticated %}
           <p>
-            <a href="inicio" class="btn btn-primary my-2">Iniciar sesion</a>
+            <a href="login" class="btn btn-primary my-2">Iniciar sesion</a>
           </p>
+          {% endif %} 
+        
         </div>
       </section>
 
