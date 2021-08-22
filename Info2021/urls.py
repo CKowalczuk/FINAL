@@ -11,7 +11,8 @@ urlpatterns = [
     path('Resultados/', include('apps.Resultados.urls')),
     path('', views.inicio, name='principal'),
     # path('', SignupView.as_view(form_class=SignupFormWithCaptcha), name="registrarse"),
-    path('registrarse/', views.registrarse, name="registrarse"),
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name = "login"),
     path('logout/', auth_views.logout_then_login, name = "logout"),
+    path('registrarse/', include('apps.usuarios.urls'), name="registrarse"),
+
 ]

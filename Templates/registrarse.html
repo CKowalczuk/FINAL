@@ -1,16 +1,21 @@
+{% extends "base.html" %}}
+
+	{%block contenido %}
+		<head>
+			<title>BIENVENIDO</title>
+		</head>
+		<body>
+		<p>Registrar nuevo Usuario</p>
+		 
+			<form method="POST">
+			    {% csrf_token %} 
+			    {{form.as_p}}
+			    
+			    <br>
+			    <input type="submit" value ="Generar Usuario"/> 
+			</form>
+
+		</body>
 
 
-{% extends 'base.html' %}
-
-
-
-
-
-{% block contenido %}
-    <form action='' method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Sign Up">
-    </form>
-{% endblock contenido %}
-
+	{%endblock contenido %}

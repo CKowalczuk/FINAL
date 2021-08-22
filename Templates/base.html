@@ -61,10 +61,10 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="display-5">Provincialización del Chaco</h1>
-          <p class="lead text-muted">Probemos lo que sabemos sobre nuestra Provincia</p>
+          <p class="lead text-muted">{{user}}, probemos lo que sabemos sobre nuestra Provincia</p>
           {% if not user.is_authenticated %}
           <p>
-            <a href="registrarse" class="btn btn-primary my-2">Crear Usuario</a>
+            <a href="{% url 'registrarse' %}" class="btn btn-primary my-2">Crear Usuario</a>
           </p>
           {% endif %} 
         

@@ -1,18 +1,8 @@
-from django.contrib.auth.forms import UserCreationForm
+from django import forms
+from .models import Usuario
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, ButtonHolder, Submit
-
-class RegistrationForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super(RegistrationForm, self).__init__(*args, **kwargs)
-
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            'username',
-            'password1',
-            'password2',
-            ButtonHolder(
-                Submit('register', 'Register', css_class='btn-primary')
-            )
-        )
+class RegistrarUsuario(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ["apodo","password"]
+        
