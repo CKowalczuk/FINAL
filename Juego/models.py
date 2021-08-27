@@ -9,7 +9,7 @@ import random
 # para cargar las preguntas 
 class Pregunta(models.Model):
 
-	PERMITIDAS = 0
+	PERMITIDAS = 1
 
 	consigna = models.CharField(max_length=255)
 	puntaje = models.DecimalField(verbose_name='Puntaje', default=0, decimal_places=2, max_digits=10)
