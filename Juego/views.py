@@ -7,12 +7,10 @@ from .models import JuegoUsuario, Pregunta, PreguntasRespondidas
 
 
 def inicio(request):
-	template_name = 'inicio.html'
+	template_name = 'base.html'
 	context = {
-		'bienvenido': 'Bienvenido'
-	}
+			}
 	return render(request, template_name, context)
-
 
 
 
@@ -119,7 +117,7 @@ def loginView(request):
 
 
 def HomeUsuario(request):
-	template_name = 'Usuario/base.html'
+	template_name = 'base.html'
 	context = {
 
 	}

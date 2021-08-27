@@ -34,7 +34,7 @@ class Respuesta(models.Model):
 
 
 class JuegoUsuario(models.Model):
-	CANT_PREG_TEST = 3
+	CANT_PREG_TEST = 10
 
 	usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 	puntaje_total = models.DecimalField(verbose_name='Puntaje Total', default=0, decimal_places=2, max_digits=10)
