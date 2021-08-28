@@ -8,7 +8,8 @@ from .views import (
 			HomeUsuario, 
 			jugar,
 			resultado_pregunta,
-			ranking)
+			ranking,
+			administrar_preguntas)
 
 urlpatterns = [
 	
@@ -24,5 +25,5 @@ urlpatterns = [
 	
 	path('jugar/', jugar, name='jugar'),
 	path('resultado/<int:pregunta_respondida_pk>/', resultado_pregunta, name='resultado'),
-
+	path('administrar/', administrar_preguntas, name='administrar')
 ]

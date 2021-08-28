@@ -32,10 +32,15 @@
              
               {% if user.is_authenticated %}
                 <li><a href="{% url 'logout_vista' %}" class="text-white">Cerrar Sesión</a></li>
+                {% if user.is_superuser %}
+                  <li><a href="{% url 'administrar' %}" class="text-white">Administrar</a></li>
+                {% endif %}
+
               {% else %}
                 <li><a href="{% url 'login' %}" class="text-white">Iniciar Sesión</a></li>
                  <li><a href="{% url 'registro' %}" class="text-white">Registrarse</a></li>
               {% endif %}
+
               
               <li><a href="{% url 'jugar' %}" class="text-white">Comenzar Trivia</a></li>
               <li><a href="{% url 'ranking' %}" class="text-white">Posiciones</a></li>

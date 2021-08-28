@@ -1,24 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+# from django.views.generic import ListView
 from .forms import RegistroFormulario, UsuarioLoginFormulario
-from .models import JuegoUsuario, Pregunta, PreguntasRespondidas
-
-
-
+from .models import JuegoUsuario, Pregunta, Respuesta, PreguntasRespondidas
 
 def inicio(request):
 	template_name = 'base.html'
-	context = {
+	ctx = {
 			}
-	return render(request, template_name, context)
-
-
+	return render(request, template_name, ctx)
 
 # crea un registro con el usuario y el puntaje obtenido
 def jugar(request):
 	template_name = 'Juego/jugar.html'
-	# no funnciona, se cambió el create por el get_or_create
+	
 	# JuegoUser = JuegoUsuario.objects.create(usuario=request.user)
+	# no funnciona, se cambió el create por el get_or_create
 
 	JuegoUser, created = JuegoUsuario.objects.get_or_create(usuario=request.user)
 
@@ -26,40 +23,26 @@ def jugar(request):
 		preg_pk = request.POST.get('preg_pk')
 		pregunta_respondida = JuegoUser.intentos.select_related('pregunta').get(pregunta__pk=preg_pk)
 		respuesta_pk = request.POST.get('respuesta_pk')
-
-
-
-
-# agregar excepción si no marca opcion---------------------------------------
-
+	
+	
 		try:
-			opcion_selecCionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
+			opcion_seleccionada = pregunta_respondida.pregunta.opciones.get(pk=respuesta_pk)
 		except:
-			raise UnboundLocalError("DEBE ELEGIR UNA RESPUESTA")
-
-
-# agregar axcepción si no marca opcion---------------------------------------
-
-
-		JuegoUser.validar_intento(pregunta_respondida, opcion_selecCionada)
-		
-
+			return redirect('resultado', pregunta_respondida.pk)
+	
+		JuegoUser.validar_intento(pregunta_respondida, opcion_seleccionada)
 		return redirect('resultado', pregunta_respondida.pk)
-
 	else:
+
 		pregunta = JuegoUser.renovar_preguntas()
 		if pregunta is not None:
 			JuegoUser.crear_intentos(pregunta)
 
-		context = {
+		ctx = {
 			'pregunta':pregunta
 		}
 
-	return render(request, template_name, context)
-
-
-
-
+	return render(request, template_name, ctx)
 
 # toma el resultado y lo envía a resultados html para informar
 # si es correcta o incorrecta
@@ -68,14 +51,25 @@ def resultado_pregunta(request, pregunta_respondida_pk):
 	template_name = 'Juego/resultados.html'
 	respondida = get_object_or_404(PreguntasRespondidas, pk=pregunta_respondida_pk)
 
-	context = {
+	ctx = {
 		'respondida':respondida
 	}
-	return render(request, template_name, context)
+	return render(request, template_name, ctx)
 
 
+def administrar_preguntas(request):
+	template_name = 'Juego/Administrar.html'
+	model = Pregunta,Respuesta
+	Preguntas = Pregunta.objects.all()
+	Respuestas = Respuesta.objects.all()
+	ctx = {
+		'preguntas': Preguntas,
+		'respuestas': Respuestas,
 
+	}
 
+	return render(request, template_name, ctx)	
+	
 
 # cuenta los usuarios registrados y los ordena por la cantidad de puntos
 def ranking(request):
@@ -83,13 +77,13 @@ def ranking(request):
 	total_usuarios_juego = JuegoUsuario.objects.order_by('-puntaje_total')[:10]
 	contador = total_usuarios_juego.count()
 
-	context = {
+	ctx = {
 
 		'usuario_juego':total_usuarios_juego,
 		'cant_usuarios':contador
 	}
 
-	return render(request, template_name, context)
+	return render(request, template_name, ctx)
 
 
 
@@ -107,22 +101,22 @@ def loginView(request):
 		login(request, usuario)
 		return redirect('HomeUsuario')
 
-	context = {
+	ctx = {
 		'form':form,
 		'titulo':titulo
 	}
 
-	return render(request, template_name, context)
+	return render(request, template_name, ctx)
 
 
 
 def HomeUsuario(request):
 	template_name = 'base.html'
-	context = {
+	ctx = {
 
 	}
 	
-	return render(request, template_name, context)
+	return render(request, template_name, ctx)
 
 
 def registro(request):
@@ -136,14 +130,14 @@ def registro(request):
 	else:
 		form = RegistroFormulario()
 
-	context = {
+	ctx = {
 
 		'form':form,
 		'titulo': titulo
 
 	}
 
-	return render(request, template_name, context)
+	return render(request, template_name, ctx)
 
 
 def logout_vista(request):

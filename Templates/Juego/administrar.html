@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="container">
+	{{user}}<br>
+	Administrar Preguntas
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Pregunta</th>
+				<th>Puntaje</th>
+				<th>Opcion 1</th>
+				<th>Opcion 2</th>
+				<th>Opcion 3</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for preg_juego in preguntas %}
+				<tr>
+					<th>{{preg_juego.id}}</th>
+					<th>{{preg_juego.consigna}}</th>
+					<th>{{preg_juego.puntaje}}</th>
+
+					{% for resp_juego in respuestas %}
+						
+						{% if resp_juego.pregunta_id == preg_juego.id %}
+							
+							<th>{{resp_juego.correcta}}</th>
+							<th>{{resp_juego.consigna}}</th>
+							
+											
+						{% endif %}
+
+					{% endfor %}
+
+						
+					
+
+				</tr>
+			{% empty %}
+				<tr>
+					No se encontraron Preguntas	
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+
+</div>
+
+{% endblock %}
