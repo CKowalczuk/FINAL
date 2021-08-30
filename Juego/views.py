@@ -6,8 +6,8 @@ from .models import JuegoUsuario, Pregunta, Respuesta, PreguntasRespondidas
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
-
-
+ 
+from django.contrib.admin.models import LogEntry
 
 
 def inicio(request):
@@ -91,7 +91,18 @@ def ranking(request):
 
 	return render(request, template_name, ctx)
 
+def estadistica(request):
+	template_name = 'Usuario/estadistica.html'
+	# log = django_admin_log.objects.filter(juegoUser=self).values_list('log_usuarios', flat=True)
+	
+		
+	ctx = {
 
+		# 'usuario_juego':total_usuarios_juego,
+		# 'cant_usuarios':contador
+	}
+
+	return render(request, template_name, ctx)
 
 
 # login para usuarios registrados
@@ -117,7 +128,7 @@ def loginView(request):
 
 
 def HomeUsuario(request):
-	template_name = 'base.html'
+	template_name = 'inicio.html'
 	ctx = {
 
 	}

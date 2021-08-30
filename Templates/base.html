@@ -33,8 +33,9 @@
               {% if user.is_authenticated %}
                 <li><a href="{% url 'logout_vista' %}" class="text-white">Cerrar Sesión</a></li>
                 {% if user.is_superuser %}
-                  <li><a href="{% url 'administrar' %}" class="text-white">Administrar</a></li>
+                  <li><a href="{% url 'administrar' %}" class="text-white">Listado de Preguntas</a></li>
                   <li><a href="{% url 'pregunta_form' %}" class="text-white">Cargar Preguntas</a></li>
+                  <li><a href="{% url 'estadistica' %}" class="text-white">Estadisticas Usuarios</a></li>
                 {% endif %}
 
               {% else %}
@@ -77,8 +78,8 @@
             <p>
               <p class="lead text-muted">Probemos lo que sabemos sobre nuestra Provincia</p>
 
-              <a href="login" class="btn btn-primary my-2">Iniciar sesion</a><br>
-              <a href="registro" class="btn btn-primary my-2">Registrarse</a>
+              <a href="{% url 'login' %}" class="btn btn-primary my-2">Iniciar sesion</a><br>
+              <a href="{% url 'registro' %}" class="btn btn-primary my-2">Registrarse</a>
             </p>
           {% endif %} 
         

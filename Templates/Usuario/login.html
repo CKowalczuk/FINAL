@@ -1,10 +1,18 @@
-<form method="POST">
-	{% csrf_token %}
+{% extends 'base.html' %}
 
-	{{form.as_p}}
+{% block contenido %}
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+<script src="/static/admin/js/nav_sidebar.js" defer></script>
+	<form method="POST">
+		{% csrf_token %}
 
-	<button type="submit">
-			Enviar
-	</button>
+		{{form.as_p}}
 
-</form>
+		<button type="submit">
+				Enviar
+		</button>
+
+	</form>
+
+{% endblock %}

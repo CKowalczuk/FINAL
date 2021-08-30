@@ -1,18 +1,23 @@
 {% extends 'base.html' %}
 
 {% block contenido %}
-
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+<script src="/static/admin/js/nav_sidebar.js" defer></script>
 <div class="container">
 	{{user}}<br>
-	Administrar Preguntas
+	Listado de Preguntas
 	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th>#</th>
 				<th>Pregunta</th>
 				<th>Puntaje</th>
+				<th>t/f</th>
 				<th>Opcion 1</th>
+				<th>t/f</th>
 				<th>Opcion 2</th>
+				<th>t/f</th>
 				<th>Opcion 3</th>
 
 			</tr>

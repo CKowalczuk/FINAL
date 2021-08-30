@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block contenido %}
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+<script src="/static/admin/js/nav_sidebar.js" defer></script>
 	<h1>Preguntas</h1>
 	<form method="post">{% csrf_token %}
 	    {{ form.as_p }}
