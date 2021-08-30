@@ -2,9 +2,13 @@ from django import forms
 from .models import  Pregunta, Respuesta, PreguntasRespondidas
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, get_user_model
+from django.forms.models import inlineformset_factory
+
+
 
 
 User = get_user_model()
+RespuestaFormset = inlineformset_factory(Pregunta, Respuesta, fields=('consigna',))
 
 class RegistroFormulario(UserCreationForm):
 	email = forms.EmailField(required=True)

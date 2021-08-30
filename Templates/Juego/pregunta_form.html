@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+	<h1>Preguntas</h1>
+	<form method="post">{% csrf_token %}
+	    {{ form.as_p }}
+	    <h2>Respuestas</h2>
+	    {{ respuesta.as_p }}
+		<button type="submit" class="btn btn-primary">
+			Guardar
+		</button>
+
+	</form>
+{% endblock contenido %}

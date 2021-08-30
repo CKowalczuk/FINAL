@@ -34,6 +34,7 @@
                 <li><a href="{% url 'logout_vista' %}" class="text-white">Cerrar Sesión</a></li>
                 {% if user.is_superuser %}
                   <li><a href="{% url 'administrar' %}" class="text-white">Administrar</a></li>
+                  <li><a href="{% url 'pregunta_form' %}" class="text-white">Cargar Preguntas</a></li>
                 {% endif %}
 
               {% else %}

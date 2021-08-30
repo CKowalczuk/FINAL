@@ -29,6 +29,15 @@
 					<th>{{user_juego.puntaje_total}}</th>
 				</tr>
 			{% endfor %}
+
+		<a title="Compartir en Facebook" id="facebook-share-button-linuxito.com">Compartir en Facebook</a>
+			<script>
+			var facebookShareButton = document.getElementById('facebook-share-button-linuxito.com');
+			var facebookShareButtonHref='http://www.facebook.com/sharer/sharer.php?';
+			facebookShareButtonHref += 'u='+document.URL;
+			facebookShareButtonHref += '&title='+document.title;
+			facebookShareButton.href = facebookShareButtonHref;
+			</script>
 		</tbody>
 	</table>
 

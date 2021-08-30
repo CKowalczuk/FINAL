@@ -9,7 +9,8 @@ from .views import (
 			jugar,
 			resultado_pregunta,
 			ranking,
-			administrar_preguntas)
+			administrar_preguntas,
+			PreguntaCreateView)
 
 urlpatterns = [
 	
@@ -25,5 +26,6 @@ urlpatterns = [
 	
 	path('jugar/', jugar, name='jugar'),
 	path('resultado/<int:pregunta_respondida_pk>/', resultado_pregunta, name='resultado'),
-	path('administrar/', administrar_preguntas, name='administrar')
+	path('administrar/', administrar_preguntas, name='administrar'),
+	path('pregunta_form/', PreguntaCreateView.as_view(), name='pregunta_form')
 ]

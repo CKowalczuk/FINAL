@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 # from django.views.generic import ListView
-from .forms import RegistroFormulario, UsuarioLoginFormulario
+from .forms import RegistroFormulario, UsuarioLoginFormulario,RespuestaFormset
 from .models import JuegoUsuario, Pregunta, Respuesta, PreguntasRespondidas
+
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView
+
+
+
 
 def inicio(request):
 	template_name = 'base.html'
@@ -159,3 +165,32 @@ def logout_vista(request):
 # 	class Meta:
 # 		db_table = 'usuarios'
 
+
+class PreguntaListView(ListView):
+    model = Pregunta
+
+class PreguntaCreateView(CreateView):
+	model = Pregunta
+	fields = ["consigna","puntaje"]
+	def get_context_data(self, **kwargs):
+		
+		data = super().get_context_data(**kwargs)
+		if self.request.POST:
+			data["respuesta"] = RespuestaFormset(self.request.POST)
+		else:
+			data["respuesta"] = RespuestaFormset()
+		return data
+
+	def form_valid(self, form):
+		context = self.get_context_data()
+		respuesta = context['respuesta']
+		self.object = form.save()
+		if respuesta.is_valid():
+			respuesta.instance = self.object
+			respuesta.save()
+
+		return self.render_to_response(self.get_context_data(form=form))
+		# return super().form_valid(form)
+
+	def get_success_url(self):
+		return redirect('inicio')
