@@ -8,7 +8,7 @@ from django.forms.models import inlineformset_factory
 
 
 User = get_user_model()
-RespuestaFormset = inlineformset_factory(Pregunta, Respuesta, fields=('consigna',))
+RespuestaFormset = inlineformset_factory(Pregunta, Respuesta, fields=('correcta', 'consigna',),can_delete_extra=False)
 
 class RegistroFormulario(UserCreationForm):
 	email = forms.EmailField(required=True)
