@@ -7,6 +7,7 @@ from django.views.generic.list 	import ListView
 from django.views.generic.edit 	import CreateView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
@@ -16,6 +17,7 @@ def inicio(request):
 	return render(request, template_name, ctx)
 
 # crea un registro con el usuario y el puntaje obtenido
+@login_required(login_url='login')
 def jugar(request):
 	template_name = 'Juego/jugar.html'
 	

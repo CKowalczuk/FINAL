@@ -76,12 +76,12 @@ en la tabla preguntas respondidas, se van registrando las preguntas ya mostradas
 
 Autores ✒️
 
-Alvarez Gabris Micaela
-Silva Irma Laudelina
-Kowalczuk Carlos Alberto
-Blanco, Brenda
-Cicirelli Maximo Miguel
-Diego Godoy
+	*Alvarez Gabris Micaela
+	*Silva Irma Laudelina
+	*Kowalczuk Carlos Alberto
+	*Blanco, Brenda
+	*Cicirelli Maximo Miguel
+	*Diego Godoy
 
 
 
