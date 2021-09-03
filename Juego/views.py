@@ -1,12 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout,get_user_model
-# from django.views.generic import ListView
-from .forms import RegistroFormulario, UsuarioLoginFormulario,RespuestaFormset
-from .models import JuegoUsuario, Pregunta, Respuesta, PreguntasRespondidas
-
-from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
-
+from django.shortcuts 		import render, redirect, get_object_or_404
+from django.contrib.auth 	import authenticate, login, logout,get_user_model
+from .forms 				import RegistroFormulario, UsuarioLoginFormulario,RespuestaFormset
+from .models 				import JuegoUsuario, Pregunta, Respuesta, PreguntasRespondidas
+from django 					import forms
+from django.views.generic.list 	import ListView
+from django.views.generic.edit 	import CreateView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -97,15 +95,11 @@ def estadistica(request):
 	template_name = 'Usuario/estadistica.html'
 	
 	usuarios = User.objects.order_by('-date_joined')
-	# last_login = user.last_login.strftime('%y-%m-%d %a %H:%M:%S')
-	# date_join = user.date_joined.strftime('%y-%m-%d %a %H:%M:%S')
 
 	ctx = {
 		'info' : usuarios 
 
 	}
-
-	# log = django_admin_log.objects.filter(juegoUser=self).values_list('log_usuarios', flat=True)
 	
 	
 	return render(request, template_name, ctx)
@@ -168,20 +162,6 @@ def logout_vista(request):
 	return redirect('/')
 
 
-
-
-# from django.db import models
-# from django.contrib.auth.models import AbstractUser
-
-# models
-# class Usuario(AbstractUser):
-# 	apodo = models.CharField(max_length=50,null=True, blank=True)
-# 	fecha_nacimiento = models.DateField(null=True, blank=True)
-# 	nivel =  models.IntegerField(null=True, blank=True)
-
-# 	class Meta:
-# 		db_table = 'usuarios'
-
 @staff_member_required
 class PreguntaListView(ListView):
     model = Pregunta
@@ -207,7 +187,7 @@ class PreguntaCreateView(CreateView):
 			respuesta.save()
 
 		return self.render_to_response(self.get_context_data(form=form))
-		# return super().form_valid(form)
+
 
 	def get_success_url(self):
 		return redirect('inicio')

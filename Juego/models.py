@@ -1,8 +1,6 @@
-from django.db import models
-from django.conf import settings
-
+from django.db 					import models
+from django.conf 				import settings
 from django.contrib.auth.models import User
-
 import random
 
 
@@ -10,7 +8,6 @@ import random
 class Pregunta(models.Model):
 
 	PERMITIDAS = 1
-
 	consigna = models.CharField(max_length=255)
 	puntaje = models.DecimalField(verbose_name='Puntaje', default=0, decimal_places=2, max_digits=10)
 
@@ -23,7 +20,6 @@ class Pregunta(models.Model):
 class Respuesta(models.Model):
 
 	CANT_RESPUESTAS = 3
-
 	pregunta = models.ForeignKey(Pregunta, related_name='opciones', on_delete=models.CASCADE)
 	correcta = models.BooleanField(verbose_name='Tildar como correcta', default=False, null=False)
 	consigna = models.CharField(max_length=255)
@@ -53,7 +49,6 @@ class JuegoUsuario(models.Model):
 		if len(respondidas) >= JuegoUsuario.CANT_PREG_TEST:
 			return None
 
-
 # no permitir que se repitan las preguntas_restantes
 # pk__in es una lista que contiene las id de las preguntas ya respondidas
 		preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
@@ -63,7 +58,6 @@ class JuegoUsuario(models.Model):
 		if not preguntas_restantes.exists():
 		 	return None
 		return random.choice(preguntas_restantes)
-
 
 # Verifica que la pregunta no fue respondida
 	def validar_intento(self, pregunta_respondida, respuesta_seleccionada):
@@ -96,6 +90,3 @@ class PreguntasRespondidas(models.Model):
 	respuesta = models.ForeignKey(Respuesta, on_delete=models.CASCADE, null=True)
 	correcta  = models.BooleanField(verbose_name='¿Es esta la respuesta correcta?', default=False, null=False)
 	puntaje_obtenido = models.DecimalField(verbose_name='Puntaje Obtenido', default=0, decimal_places=2, max_digits=10)
-
-	# def __str__(self):
-	# 	return JuegoUsuario

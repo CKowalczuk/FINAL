@@ -1,14 +1,11 @@
-from django.contrib import admin
-
-from .models import Pregunta, Respuesta, PreguntasRespondidas, JuegoUsuario
-
-from .forms import ElegirInlineFormset
-
-from django.contrib.admin.models import LogEntry
-from django.contrib.admin.models import DELETION
-from django.utils.html import escape
-from django.urls import reverse
-from django.utils.safestring import mark_safe
+from django.contrib                 import admin
+from .models                        import Pregunta, Respuesta, PreguntasRespondidas, JuegoUsuario
+from .forms                         import ElegirInlineFormset
+from django.contrib.admin.models    import LogEntry
+from django.contrib.admin.models    import DELETION
+from django.utils.html              import escape
+from django.urls                    import reverse
+from django.utils.safestring        import mark_safe
 
 
 
@@ -35,17 +32,14 @@ class PreguntasRespondidasAdmin(admin.ModelAdmin):
 
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
-    # to have a date-based drilldown navigation in the admin page
     date_hierarchy = 'action_time'
 
-    # to filter the resultes by users, content types and action flags
     list_filter = [
         'user',
         'content_type',
         'action_flag'
     ]
 
-    # when searching the user will be able to search in both object_repr and change_message
     search_fields = [
         'object_repr',
         'change_message'
@@ -73,9 +67,6 @@ class LogEntryAdmin(admin.ModelAdmin):
     		ct = obj.content_type
     		link = '<a href="%s">%s</a>' % (reverse('admin:%s_%s_change' % (ct.app_label,ct.model), args=[obj.object_id]), escape(obj.object_repr),)
     		return mark_safe(link)
-
-
-
 
 
 admin.site.register(PreguntasRespondidas)

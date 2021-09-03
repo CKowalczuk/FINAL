@@ -72,11 +72,11 @@
           
           {% if user.is_authenticated %}
 
-            <p class="lead text-muted">Bienvenido {{user}}, Probemos lo que sabemos sobre nuestra Provincia</p>
+            <p class="lead text-muted">Bienvenido {{user}}, Probemos lo que sabemos sobre la Provincia del Chaco</p>
           
           {% else %}
             <p>
-              <p class="lead text-muted">Probemos lo que sabemos sobre nuestra Provincia</p>
+              <p class="lead text-muted">Probemos lo que sabemos sobre la Provincia del Chaco</p>
 
               <a href="{% url 'login' %}" class="btn btn-primary my-2">Iniciar sesion</a><br>
               <a href="{% url 'registro' %}" class="btn btn-primary my-2">Registrarse</a>
