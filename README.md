@@ -18,6 +18,7 @@ modificar en settings/local.py los argumentos para que se conecten a la BD
 
 from .base import *
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', # Conector de DB
@@ -29,6 +30,7 @@ DATABASES = {
     }
 }
 
+	
 Construido con 🛠️
 [Django]Framework web
 [PostgreSQL]Base de datos
@@ -76,12 +78,12 @@ en la tabla preguntas respondidas, se van registrando las preguntas ya mostradas
 
 Autores ✒️
 
-Alvarez Gabris Micaela
-Silva Irma Laudelina
-Kowalczuk Carlos Alberto
-Blanco, Brenda
-Cicirelli Maximo Miguel
-Diego Godoy
+* Alvarez Gabris Micaela
+* Silva Irma Laudelina
+* Kowalczuk Carlos Alberto
+* Blanco, Brenda
+* Cicirelli Maximo Miguel
+* Diego Godoy
 
 
 
