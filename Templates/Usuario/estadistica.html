@@ -2,201 +2,43 @@
 
 {% block contenido %}
 
-
-<head>
 <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
 <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
 <script src="/static/admin/js/nav_sidebar.js" defer></script>
+<div class="container">
+  {{user}}<br>
+  Actividad de Usuarios
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Usuario</th>
+        <th>Ultima Conexión</th>
+        <th>Fecha Alta</th>
+               
+      </tr>
 
+    </thead>
+    <thead>
+      <tr>
+        {% for a in info %}
+          <tr>
+            <td>{{a.id}}</td>
+            <td>{{a.username}}</td>
+            <td>{{a.last_login}}</td>
+            <td>{{a.date_joined}}</td>       
+          </tr>
+        {% endfor %}
 
-  
-<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
-  
-<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
-<script src="/static/admin/js/jquery.init.js"></script>
-<script src="/static/admin/js/core.js"></script>
-<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
-<script src="/static/admin/js/actions.js"></script>
-<script src="/static/admin/js/urlify.js"></script>
-<script src="/static/admin/js/prepopulate.js"></script>
-<script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+        
+      </tr>
 
-
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
-    
-
-<meta name="robots" content="NONE,NOARCHIVE">
-</head>
-
-
-<body class=" app-admin model-logentry change-list"
-  data-admin-utc-offset="0">
-
-<!-- Container -->
-<div id="container">
-  
-
-    <div class="main shifted" id="main">
+    </thead>
+  </table>  
+    <tbody>
       
-        
-          
-<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="(des)activar ordenamiento"></button>
-
-      <div class="content">
-        <!-- Content -->
-        <div id="content" class="">
-          
-          <h1>Seleccione entrada de registro que desea ver</h1>
-          
-          
-  <div id="content-main">
-    
-        <ul class="object-tools">
-          
-            
-
-
-  
-
-
-          
-        </ul>
-    
-    
-    <div class="module filtered" id="changelist">
-      <div class="changelist-form-container">
-        
-
-<div id="toolbar"><form id="changelist-search" method="get">
-<div><!-- DIV needed for valid HTML -->
-<label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"></label>
-<input type="text" size="40" name="q" value="" id="searchbar" autofocus>
-<input type="submit" value="Buscar">
-
-
-</div>
-</form></div>
-
-
-        
-<div class="xfull">
-<ul class="toplinks">
-
-
-<li class="date-back"><a href="?action_time__year=2021">&lsaquo; 2021</a></li>
-
-
-
-<li> <a href="?action_time__day=24&amp;action_time__month=8&amp;action_time__year=2021">24 de Agosto</a></li>
-
-</ul><br class="clear">
-</div>
-        <form id="changelist-form" method="post" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="bt1p8116ceeRmStW5eEjAtIMko0oI4miDPpOqjb3HMSHtu0j9kPwP4Dta35rjrdL">
-        
-<div class="results">
-<table id="result_list">
-<thead>
-<tr>
-
-<th scope="col" class="sortable column-action_time sorted descending">
-   
-     
-       <div class="sortoptions">
-         <a class="sortremove" href="?o=" title="Remover de ordenamiento"></a>
-         
-         <a href="?o=0" class="toggle descending" title="(des)activar ordenamiento"></a>
-       </div>
-     
-   
-   <div class="text"><a href="?o=0">Hora de la acción</a></div>
-   <div class="clear"></div>
-</th>
-<th scope="col" class="sortable column-user">
-   
-     
-   
-   <div class="text"><a href="?o=1.-0">Usuario</a></div>
-   <div class="clear"></div>
-</th>
-<th scope="col" class="sortable column-content_type">
-   
-     
-   
-   <div class="text"><a href="?o=2.-0">Tipo de contenido</a></div>
-   <div class="clear"></div>
-</th>
-<th scope="col" class="sortable column-action_flag">
-   
-     
-   
-   <div class="text"><a href="?o=3.-0">Marca de acción</a></div>
-   <div class="clear"></div>
-</th>
-</tr>
-</thead>
-<tbody>
-
-
-
-<tr><th class="field-action_time nowrap"><a href=""</a></th><td class="field-user nowrap"></td><td class="field-content_type nowrap"></td><td class="field-action_flag"></td></tr>
-
-</tbody>
-</table>
-</div>
-
-
-</p>
-        </form>
-      </div>
-          <div id="changelist-filter">
-            <h2>Filtrar</h2>
-<h3> Por usuario </h3>
-<ul>
-
-    <li class="selected">
-    <a href="?" title="Todos/as">Todos/as</a></li>
-
-
-</ul>
-
-<h3> Por tipo de contenido </h3>
-<ul>
-
-    <li class="selected">
-    <a href="?" title="Todos/as">Todos/as</a></li>
-
-
-    <li>
-    <a href="?content_type__isnull=True" title="-">-</a></li>
-
-</ul>
-
-<h3> Por marca de acción </h3>
-<ul>
-
-    <li class="selected">
-    <a href="?" title="Todos/as">Todos/as</a></li>
-
-
-</ul>
-
-          </div>
-        
-      
-    </div>
-  </div>
-
-          
-          <br class="clear">
-        </div>
-        <!-- END Content -->
-        <div id="footer"></div>
-      </div>
-    </div>
-</div>
-<!-- END Container -->
-</body>
-
+              
+    <tbody>
+                      
 
 {% endblock %}

@@ -25,7 +25,7 @@ class Respuesta(models.Model):
 	CANT_RESPUESTAS = 3
 
 	pregunta = models.ForeignKey(Pregunta, related_name='opciones', on_delete=models.CASCADE)
-	correcta = models.BooleanField(verbose_name='Tildar la respuesta correcta', default=False, null=False)
+	correcta = models.BooleanField(verbose_name='Tildar como correcta', default=False, null=False)
 	consigna = models.CharField(max_length=255)
 
 

@@ -47,14 +47,6 @@ class UsuarioLoginFormulario(forms.Form):
 		return super(UsuarioLoginFormulario, self).clean(*args, **kwargs)
 
 
-# class ListarPreguntas(forms.ModelForm):
-#     class Meta:
-#         model = Preguntas
-#         r1=False
-#         r2=False
-#         r3=False
-#         fields = ["rta1","rta2","rta3", "rta1_v", "rta2_v","rta3_v"]
-
 
 class ElegirInlineFormset(forms.BaseInlineFormSet):
 	

@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout,get_user_model
 # from django.views.generic import ListView
 from .forms import RegistroFormulario, UsuarioLoginFormulario,RespuestaFormset
 from .models import JuegoUsuario, Pregunta, Respuesta, PreguntasRespondidas
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
- 
-from django.contrib.admin.models import LogEntry
+
+from django.contrib.auth.models import User
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 def inicio(request):
@@ -62,7 +63,7 @@ def resultado_pregunta(request, pregunta_respondida_pk):
 	}
 	return render(request, template_name, ctx)
 
-
+@staff_member_required
 def administrar_preguntas(request):
 	template_name = 'Juego/Administrar.html'
 	model = Pregunta,Respuesta
@@ -90,18 +91,23 @@ def ranking(request):
 	}
 
 	return render(request, template_name, ctx)
-
+@staff_member_required
 def estadistica(request):
+	model = User
 	template_name = 'Usuario/estadistica.html'
-	# log = django_admin_log.objects.filter(juegoUser=self).values_list('log_usuarios', flat=True)
 	
-		
-	ctx = {
+	usuarios = User.objects.order_by('-date_joined')
+	# last_login = user.last_login.strftime('%y-%m-%d %a %H:%M:%S')
+	# date_join = user.date_joined.strftime('%y-%m-%d %a %H:%M:%S')
 
-		# 'usuario_juego':total_usuarios_juego,
-		# 'cant_usuarios':contador
+	ctx = {
+		'info' : usuarios 
+
 	}
 
+	# log = django_admin_log.objects.filter(juegoUser=self).values_list('log_usuarios', flat=True)
+	
+	
 	return render(request, template_name, ctx)
 
 
@@ -176,7 +182,7 @@ def logout_vista(request):
 # 	class Meta:
 # 		db_table = 'usuarios'
 
-
+@staff_member_required
 class PreguntaListView(ListView):
     model = Pregunta
 
